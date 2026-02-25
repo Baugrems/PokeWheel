@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PokeWheel Raffle</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bungee&family=Rajdhani:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-glow" aria-hidden="true"></div>
+    <main class="layout">
+      <section class="panel controls">
+        <h1>PokeWheel Raffle Engine</h1>
+        <label for="namesInput">Entrants (one username per line)</label>
+        <textarea id="namesInput" rows="16"></textarea>
+
+        <div class="row">
+          <button id="loadBtn" type="button">Load Entrants</button>
+          <button id="shuffleBtn" type="button" class="ghost">Shuffle Names</button>
+          <button id="clearBtn" type="button" class="ghost">Clear</button>
+        </div>
+
+        <div class="status-grid">
+          <article>
+            <h2>Total Entrants</h2>
+            <strong id="totalCount">0</strong>
+          </article>
+          <article>
+            <h2>Active Entrants</h2>
+            <strong id="activeCount">0</strong>
+          </article>
+          <article>
+            <h2>Draws</h2>
+            <strong id="drawCount">0</strong>
+          </article>
+          <article>
+            <h2>Last Winner</h2>
+            <strong id="lastWinner">-</strong>
+          </article>
+          <article>
+            <h2>Load Time</h2>
+            <strong id="loadTime">-</strong>
+          </article>
+        </div>
+
+        <p id="message" role="status" class="message"></p>
+      </section>
+
+      <section class="panel stage">
+        <div id="winnerBanner" class="winner-banner">
+          <div id="winnerBannerEnergy" class="winner-banner-energy">Ready</div>
+          <div id="winnerBannerName" class="winner-banner-name">No winner yet</div>
+          <div id="winnerBannerMeta" class="winner-banner-meta">Load entrants and spin</div>
+        </div>
+
+        <div class="wheel-wrap">
+          <div id="spinAura" class="spin-aura" aria-hidden="true"></div>
+          <div id="spinSparks" class="spin-sparks" aria-hidden="true"></div>
+          <div class="art-slot art-slot-wheel art-slot-right empty" data-slot-label="assets/art-top-right.png">
+            <img id="artTopRight" alt="Top right custom art" />
+          </div>
+          <canvas id="wheelCanvas" width="760" height="760"></canvas>
+          <div class="pointer" aria-hidden="true"></div>
+          <div id="wheelModeLabel" class="wheel-label">Energy Wheel</div>
+        </div>
+        <div class="spin-controls">
+          <button id="spinBtn" type="button" class="primary">Spin Two-Stage Draw</button>
+          <div id="selectedEnergy" class="pill">Energy: -</div>
+          <div id="subsetCount" class="pill">Pool: 0</div>
+        </div>
+      </section>
+
+      <section class="panel side">
+        <h2>Energy Buckets</h2>
+        <div id="energyList" class="energy-list" aria-live="polite"></div>
+
+        <h2>Winners</h2>
+        <div class="winner-actions">
+          <button id="exportWinnersBtn" type="button" class="ghost">Export Winners CSV</button>
+        </div>
+        <ol id="winnerList" class="winner-list"></ol>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>

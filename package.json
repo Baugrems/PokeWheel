@@ -1,0 +1,56 @@
+{
+  "name": "pokewheel",
+  "version": "1.0.0",
+  "description": "Stream-ready poker energy raffle wheel",
+  "private": true,
+  "main": "electron-main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder",
+    "pack": "electron-builder --dir",
+    "dist:win": "electron-builder --win --x64",
+    "dist:win-portable": "electron-builder --win portable --x64",
+    "share:zip": "mkdir -p dist/share && cp index.html styles.css app.js README.md electron-main.js package.json dist/share/ && cp -R assets dist/share/assets && (cd dist/share && zip -r ../PokeWheel-web.zip .)",
+    "clean": "rm -rf dist"
+  },
+  "build": {
+    "appId": "com.pokewheel.app",
+    "productName": "PokeWheel",
+    "directories": {
+      "output": "dist",
+      "buildResources": "assets"
+    },
+    "files": [
+      "index.html",
+      "styles.css",
+      "app.js",
+      "assets/**/*",
+      "electron-main.js",
+      "package.json"
+    ],
+    "extraMetadata": {
+      "main": "electron-main.js"
+    },
+    "win": {
+      "target": "nsis",
+      "artifactName": "PokeWheel-Setup-${version}.exe"
+    },
+    "mac": {
+      "target": "dmg",
+      "artifactName": "PokeWheel-${version}.dmg"
+    },
+    "linux": {
+      "target": "AppImage",
+      "artifactName": "PokeWheel-${version}.AppImage"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true
+    }
+  },
+  "devDependencies": {
+    "electron": "^31.0.0",
+    "electron-builder": "^25.1.8"
+  }
+}
