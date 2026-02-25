@@ -14,7 +14,7 @@ Built as a dependency-free static app and optimized for large pools (50,000+ ent
 This project now includes an Electron wrapper so it can run as a native desktop app on Windows/Mac.
 
 ```bash
-cd /Users/shanecopenhagen/PokeWheel
+cd /path/to/PokeWheel
 npm install
 npm start
 ```
@@ -38,12 +38,12 @@ npm run share:zip          # Zip web bundle (macOS/Linux), for manual file-shari
 
 ### Browser
 
-Open `/Users/shanecopenhagen/PokeWheel/index.html` in any modern browser.
+Open `index.html` from the repository root in any modern browser.
 
 If your browser blocks local script execution from `file://`, run a local server instead:
 
 ```bash
-cd /Users/shanecopenhagen/PokeWheel
+cd /path/to/PokeWheel
 python3 -m http.server 4173
 ```
 
@@ -66,3 +66,7 @@ Then open `http://localhost:4173`.
 - The stage uses a single wheel that transitions between energy and name modes.
 - Optional custom art slots:
   - Top-right of wheel: `assets/art-top-right.png`
+
+## License
+
+Copyright © 2026 Shane Copenhagen. All Rights Reserved.
