@@ -1469,17 +1469,18 @@ function renderWinners() {
 
   for (const winner of show) {
     const li = document.createElement("li");
+    li.className = "winner-ticker-item";
     if (winner.draw === state.drawCount) {
       li.classList.add("winner-new");
     }
 
-    li.className = "winner-ticker-item";
-    const title = document.createElement("div");
-    title.className = "winner-inline";
+    const topRow = document.createElement("div");
+    topRow.className = "winner-row";
 
     const drawText = document.createElement("span");
-    drawText.textContent = `#${winner.draw} `;
-    title.append(drawText);
+    drawText.className = "winner-draw";
+    drawText.textContent = `#${winner.draw}`;
+    topRow.append(drawText);
 
     const energySpan = document.createElement("span");
     energySpan.className = "winner-inline-energy";
@@ -1497,10 +1498,18 @@ function renderWinners() {
     const winnerEnergyLabel = document.createElement("span");
     winnerEnergyLabel.textContent = winner.energyLabel || "";
     energySpan.append(winnerEnergyLabel);
-    title.append(energySpan);
-    title.append(document.createTextNode(` • ${winner.name} • ${winner.timestamp}`));
+    topRow.append(energySpan);
 
-    li.append(title);
+    const timeText = document.createElement("span");
+    timeText.className = "winner-time";
+    timeText.textContent = winner.timestamp;
+    topRow.append(timeText);
+
+    const nameText = document.createElement("div");
+    nameText.className = "winner-name";
+    nameText.textContent = winner.name;
+
+    li.append(topRow, nameText);
     fragment.append(li);
   }
 
@@ -1793,7 +1802,6 @@ function clearAll() {
 }
 
 function attachEvents() {
-  dom.namesInput.addEventListener("input", scheduleAutoLoadFromInput);
   dom.loadBtn.addEventListener("click", () => {
     void handleLoadFromText();
   });
